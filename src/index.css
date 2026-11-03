@@ -1,0 +1,200 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+@import "tailwindcss";
+html, body {
+  margin: 0;
+  padding: 0;
+  /* clip avoids a horizontal scrollbar without turning the page into a scroll container, which would break position: sticky */
+  overflow-x: clip;
+  overflow-anchor: none;
+  background-color: #000;
+}
+
+/*
+  The hero video sticks for one viewport while its copy scrolls away.
+  The following section is pulled up by the same distance so it rises over the pinned video.
+*/
+.hero-media {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100svh;
+}
+
+.hero-copy {
+  margin-top: -100svh;
+}
+
+.hero-stick-runway {
+  height: 100svh;
+}
+
+.hero-next-overlap {
+  position: relative;
+  z-index: 20;
+  margin-top: -100svh;
+  background-color: #000;
+}
+
+.project-name-gold,
+.highlight-title-gold {
+  background-image: linear-gradient(
+    105deg,
+    #a86b12 0%,
+    #ffe07a 14%,
+    #fff8d4 24%,
+    #ffd24a 36%,
+    #fffce8 48%,
+    #f0c04a 60%,
+    #fff6c8 72%,
+    #e0a020 86%,
+    #ffe58a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 214, 90, 0.5));
+}
+
+.project-name-gold {
+  background-size: 220% 100%;
+  background-position: 20% 50%;
+  animation: project-gold-shine 6s ease-in-out infinite;
+}
+
+.highlight-title-gold {
+  background-size: 110px 100%;
+  background-repeat: repeat;
+  animation: highlight-gold-shine 2.4s linear infinite;
+}
+
+@keyframes project-gold-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes highlight-gold-shine {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 110px 0;
+  }
+}
+
+.write-caret {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0.85em;
+  vertical-align: -0.08em;
+  pointer-events: none;
+}
+
+.write-caret::after {
+  content: '';
+  position: absolute;
+  left: 0.04em;
+  bottom: 0.05em;
+  width: max(2px, 0.07em);
+  height: 0.82em;
+  background: #fff6dc;
+  box-shadow: 0 0 12px rgba(255, 236, 190, 0.95);
+}
+
+.write-rest {
+  opacity: 0;
+}
+
+.experience-stop {
+  z-index: 1;
+}
+
+.experience-stop-text {
+  font-size: 13px;
+}
+
+.experience-stop-body {
+  transform-origin: left top;
+  transition: transform 1.05s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.experience-stop:hover {
+  z-index: 3;
+}
+
+.experience-stop-title {
+  transition: color 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-stop:hover .experience-stop-title {
+  color: #ffe08a;
+}
+
+.experience-stop:hover .experience-stop-body {
+  transform: scale(1.18);
+}
+
+.experience-stop:hover .experience-stop-text {
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .project-name-gold,
+  .highlight-title-gold {
+    animation: none;
+    background-position: 28% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  .hero-copy {
+    margin-top: 0;
+  }
+
+  .hero-stick-runway {
+    display: none;
+  }
+
+  .hero-next-overlap {
+    margin-top: 0;
+  }
+
+  .project-name-gold,
+  .highlight-title-gold {
+    animation: none;
+  }
+
+  .write-caret {
+    display: none;
+  }
+
+  .write-rest {
+    opacity: 1;
+  }
+
+  .experience-stop-text,
+  .experience-stop-body {
+    transition: none;
+  }
+
+  .experience-stop:hover .experience-stop-body {
+    transform: none;
+  }
+}
